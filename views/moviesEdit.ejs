@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
+</head>
+<body>
+
+  <div class="container">
+  <nav class="navbar navbar-dark bg-primary mt-5 mb-3">
+    <div class="container">
+     <a href="/movies/list" class="navbar-brand">Lista</a>
+     <a href="/" class="navbar-brand">Inicio</a>
+     <a href="/movies/create" class="navbar-brand">Agregar</a>
+   </div>
+</nav>
+
+    <h1>Editar películas</h1> 
+    <form action="/movies/edit/<%= pelicula.id%>?_method=PUT" method="POST">
+        <label for="">Título</label>
+        <input type="text" name="title" value="<%= pelicula.title %> ">
+        <br>
+        <label for="">Rating</label>
+        <input type="number" name="rating" step="0.1" min="0" value=<%= pelicula.rating %>>
+        <br>
+        <label for="">Premios</label>
+        <input type="number" name="awards" min="0" value=<%= pelicula.awards %>>
+        <br>
+        <label for="">Fecha de estreno</label>
+        <input type="date" name="release_date" value=<%= estreno %> >
+        <br>
+        <label for="">Duración</label>
+        <input type="number" min="0" name="length" value=<%= pelicula.length %>>
+        <br>
+        <select name="genre_id" id="">
+      
+        <% generos.forEach(genero => { %>
+            <option <%= genero.id == pelicula.genre_id ? "selected" : null %>value="<%= genero.id %>"><%= genero.name %>   </option>
+        <% }) %>
+    </select>
+    <br>
+    <button type="submit">Guardar cambios</button>
+    </form>
+
+  </div>
+</body>
+</html>

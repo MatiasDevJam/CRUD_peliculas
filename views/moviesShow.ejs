@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
+</head>
+<body>
+
+  <div class="container">
+  <nav class="navbar navbar-dark bg-primary mt-5 mb-3">
+    <div class="container">
+     <a href="/movies/list" class="navbar-brand">Lista</a>
+     <a href="/" class="navbar-brand">Inicio</a>
+     <a href="/movies/create" class="navbar-brand">Agregar</a>
+   </div>
+</nav>
+
+
+    
+    <h1><%= pelicula.title %> </h1>
+    <ul>
+        <li>Premios: <%= pelicula.awards %> </li>
+        <li>Fecha de estreno: <%= estreno %> </li>
+        <li>Rating: <%= pelicula.rating %> </li>
+        <li>Genero: <a href="/genres/show/<%= pelicula.genero.id %> "><%= pelicula.genero.name %> </a></li>
+    </ul>
+
+    <h4>
+      <ul>
+        <% pelicula.actores.forEach(actor => { %>
+         <li><a href="/actors/show/<%= actor.id %> "><%= actor.first_name %> <%= actor.last_name %></a> </li>
+        <% }) %>
+      </ul>
+    </h4>
+    <a href="/movies/edit/<%= pelicula.id %> ">Editar</a>
+    <form action="/movies/delete/<%= pelicula.id %>?_method=DELETE" method="POST">
+        <button type="submit">Eliminar</button>
+    </form>
+
+</div>
+</body>
+</html>
